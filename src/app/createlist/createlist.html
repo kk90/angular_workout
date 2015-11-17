@@ -1,0 +1,48 @@
+
+<div class="container">
+<form name="createListForm" novalidate="" ng-submit="createlist.submit(createListForm)"
+
+>
+<div ng-repeat="(key, field) in createlist.form.fields">
+  <label>{{ key }}</label>
+  <p style="font-size: 9px; color: grey; padding:0; margin: auto;">{{field.help_text}}</p>
+  <input
+  name="{{ key }}"
+  ng-model="createlist.list[key]"
+  class="{{field.widget.attrs.class}}"
+  type="{{field.widget.input_type}}"
+  ng-required="{{field.required}}"
+  ng-if="field.widget.input_type!='select' && field.widget.input_type!='checkbox'"
+  minlength="{{field.min_length}}"
+  maxlength="{{field.max_length}}"
+  >
+  <input
+  name="{{ key }}"
+  ng-model="createlist.list[key]"
+  type="{{field.widget.input_type}}"
+  ng-required="{{field.required}}"
+  ng-if="field.widget.input_type =='checkbox'"
+  >
+    <ng-messages for="createListForm[key].$error"
+                         ng-if="createListForm[key].$touched || createListForm[key].$dirty">
+    <ng-message when="required" class="text-danger">Pole wymagane</ng-message>
+      <ng-message when="minlength" class="text-danger">Wartość za krótka</ng-message>
+    </ng-messages>
+
+  <select
+    class="{{field.widget.attrs.class}}"
+    ng-if="field.widget.input_type=='select'"
+    name="{{ key }}"
+    ng-model="createlist.list[key]"
+    ng-options="option.value as option.display for option in field.widget.choices"
+    >
+  <!-- <option ng-repeat="option in field.widget.choices" value="{{option.value}}" >{{option.display}}</option> -->
+  </select>
+</div>
+<div class="row">
+  <input type="button" class="btn btn-default col-xs-3" ng-click="createlist.clear(createListForm)" value="Clear"/>
+  <input class="btn btn-primary col-xs-3" type='submit' value="Save"/>
+</div>
+</form>
+
+</div>

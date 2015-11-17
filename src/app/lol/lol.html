@@ -1,0 +1,26 @@
+<div class="container">
+
+<div ng-repeat="list in lol.lists">
+<!--
+    <pre><h4>{{ list.fields.name}}</h4>
+    {{ list.fields.city}}
+    {{ list.fields.secret_code}}
+    {{ list.fields.description}}
+    {{ list.fields.author}}</pre> -->
+
+  <uib-accordion close-others="oneAtATime">
+  <uib-accordion-group is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+    <uib-accordion-heading>
+           {{ list.fields.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+         </uib-accordion-heading>
+    {{ list.fields.city}}
+    {{ list.fields.secret_code}}
+    {{ list.fields.description}}
+    {{ list.fields.author}}
+  </uib-accordion-group>
+
+</uib-accordion>
+</div>
+
+
+</div>
